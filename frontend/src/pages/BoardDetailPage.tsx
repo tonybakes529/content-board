@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Board, Card as CardType } from '../types';
 import { Card } from '../components/Card';
 import { TopBar } from '../components/TopBar';
@@ -14,7 +14,6 @@ interface AddCardFormData {
 
 export const BoardDetailPage = () => {
   const { boardId } = useParams<{ boardId: string }>();
-  const navigate = useNavigate();
   const [board, setBoard] = useState<Board | null>(null);
   const [cards, setCards] = useState<CardType[]>([]);
   const [showAddCard, setShowAddCard] = useState(false);
@@ -117,7 +116,7 @@ export const BoardDetailPage = () => {
 
   const handleRenameCard = async (id: number, newTitle: string) => {
     try {
-      const updated = await updateCard(id, { title: newTitle });
+      await updateCard(id, { title: newTitle });
       setCards(
         cards.map((c) => (c.id === id ? { ...c, title: newTitle } : c))
       );
