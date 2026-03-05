@@ -5,14 +5,12 @@ interface SwipeFileListProps {
   cards: CardType[];
   onDelete: (id: number) => void;
   onDuplicate: (id: number) => void;
-  onRename: (id: number, newTitle: string) => void;
 }
 
 export const SwipeFileList = ({
   cards,
   onDelete,
   onDuplicate,
-  onRename,
 }: SwipeFileListProps) => {
   const [search, setSearch] = useState('');
   const [typeFilter, setTypeFilter] = useState<CardTypeEnum | 'all'>('all');

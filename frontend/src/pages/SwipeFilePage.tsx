@@ -10,7 +10,6 @@ export const SwipeFilePage = () => {
     getCards,
     deleteCard,
     duplicateCard,
-    updateCard,
     loading,
     error,
   } = useApi();
@@ -48,17 +47,6 @@ export const SwipeFilePage = () => {
     }
   };
 
-  const handleRenameCard = async (id: number, newTitle: string) => {
-    try {
-      await updateCard(id, { title: newTitle });
-      setCards(
-        cards.map((c) => (c.id === id ? { ...c, title: newTitle } : c))
-      );
-    } catch (err) {
-      console.error('Failed to rename card:', err);
-    }
-  };
-
   return (
     <div className="flex flex-col h-screen">
       <TopBar boardName="Swipe File" />
@@ -79,7 +67,6 @@ export const SwipeFilePage = () => {
             cards={cards}
             onDelete={handleDeleteCard}
             onDuplicate={handleDuplicateCard}
-            onRename={handleRenameCard}
           />
         )}
       </div>
